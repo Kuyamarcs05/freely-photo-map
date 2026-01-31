@@ -12,7 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
     loadPhotos();
     setupEventListeners();
     updateStats();
+    checkOnboarding();
 });
+
+// ===== Onboarding =====
+function checkOnboarding() {
+    // Show onboarding if no user logged in AND no photos shared
+    if (!currentUser && photos.length === 0) {
+        // Check if user has seen onboarding before
+        if (!localStorage.getItem('freely_onboarding_seen')) {
+            document.getElementById('onboardingOverlay').classList.add('active');
+        }
+    }
+}
 
 // ===== Authentication =====
 function checkAuth() {
@@ -224,6 +236,14 @@ function setupEventListeners() {
 
     // Delete photo
     document.getElementById('deletePhotoBtn').addEventListener('click', handleDeletePhoto);
+
+    // Onboarding
+    document.getElementById('startJourneyBtn').addEventListener('click', () => {
+        document.getElementById('onboardingOverlay').classList.remove('active');
+        localStorage.setItem('freely_onboarding_seen', 'true');
+        openAuthModal();
+        document.querySelector('[data-tab="signup"]').click(); // Switch to signup tab
+    });
 }
 
 // ===== Authentication Handlers =====

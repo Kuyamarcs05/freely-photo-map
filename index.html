@@ -28,6 +28,11 @@
     <meta name="keywords" content="photo sharing, interactive map, travel, photography, location-based, social media">
     <meta name="author" content="Kuyamarcs05">
     <link rel="canonical" href="https://freely-photo-map.vercel.app/">
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <link rel="apple-touch-icon" href="icon.png">
+
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
@@ -43,6 +48,38 @@
 </head>
 
 <body>
+    <!-- Welcome/Onboarding Overlay (Only for new users) -->
+    <div class="onboarding-overlay" id="onboardingOverlay">
+        <div class="onboarding-card">
+            <div class="onboarding-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+            </div>
+            <h2>Welcome to Freely! 🌍</h2>
+            <p>The map is waiting for you! Be the first to share a moment on the map.</p>
+            <div class="onboarding-steps">
+                <div class="step">
+                    <span class="step-num">1</span>
+                    <span>Create an account</span>
+                </div>
+                <div class="step">
+                    <span class="step-num">2</span>
+                    <span>Take a photo</span>
+                </div>
+                <div class="step">
+                    <span class="step-num">3</span>
+                    <span>Share with the world!</span>
+                </div>
+            </div>
+            <button class="btn-primary" id="startJourneyBtn">
+                Start My Journey
+            </button>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="header-content">
@@ -355,6 +392,17 @@
 
     <!-- Custom JS -->
     <script src="app.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => console.log('ServiceWorker registered'))
+                    .catch(err => console.log('ServiceWorker registration failed: ', err));
+            });
+        }
+    </script>
 </body>
 
 </html>
