@@ -2,6 +2,12 @@
 
 A stunning web application where users can share photos on an interactive map and explore pictures from around the world!
 
+## 🌐 Live Demo
+
+**🚀 Try it now:** [https://freely-photo-map.vercel.app](https://freely-photo-map.vercel.app)
+
+**GitHub Repository:** [https://github.com/Kuyamarcs05/freely-photo-map](https://github.com/Kuyamarcs05/freely-photo-map)
+
 ## Features ✨
 
 ### Core Features

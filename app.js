@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
     loadPhotos();
     setupEventListeners();
-    addSampleData();
+    updateStats();
 });
 
 // ===== Authentication =====
@@ -590,87 +590,6 @@ function showNotification(message, type) {
         notification.style.animation = 'slideOutRight 0.4s ease';
         setTimeout(() => notification.remove(), 400);
     }, 3000);
-}
-
-// ===== Sample Data =====
-function addSampleData() {
-    // Only add if no photos exist
-    if (photos.length > 0) return;
-
-    // Create a sample user for demo photos
-    const demoUser = {
-        id: 0,
-        username: 'FreelySamples',
-        avatar: generateAvatar('FreelySamples')
-    };
-
-    const samplePhotos = [
-        {
-            id: 1,
-            userId: 0,
-            username: 'FreelySamples',
-            userAvatar: demoUser.avatar,
-            image: 'https://images.unsplash.com/photo-1555217851-6141535bd771?w=800&q=80',
-            caption: 'Beautiful sunset over Manila Bay 🌅',
-            location: 'Manila Bay, Manila',
-            lat: 14.5547,
-            lng: 120.9774,
-            date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
-        },
-        {
-            id: 2,
-            userId: 0,
-            username: 'FreelySamples',
-            userAvatar: demoUser.avatar,
-            image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80',
-            caption: 'Amazing view from Tagaytay! The weather is perfect today 🌤️',
-            location: 'Tagaytay, Cavite',
-            lat: 14.1040,
-            lng: 120.9605,
-            date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString()
-        },
-        {
-            id: 3,
-            userId: 0,
-            username: 'FreelySamples',
-            userAvatar: demoUser.avatar,
-            image: 'https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?w=800&q=80',
-            caption: 'Beach paradise in Boracay! Crystal clear waters 🏖️',
-            location: 'White Beach, Boracay',
-            lat: 11.9674,
-            lng: 121.9248,
-            date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
-        },
-        {
-            id: 4,
-            userId: 0,
-            username: 'FreelySamples',
-            userAvatar: demoUser.avatar,
-            image: 'https://images.unsplash.com/photo-1528127269322-539801943592?w=800&q=80',
-            caption: 'Rice terraces are breathtaking! 🌾',
-            location: 'Banaue Rice Terraces, Ifugao',
-            lat: 16.9267,
-            lng: 121.0533,
-            date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
-        },
-        {
-            id: 5,
-            userId: 0,
-            username: 'FreelySamples',
-            userAvatar: demoUser.avatar,
-            image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80',
-            caption: 'Coffee shop vibes in Cavite ☕',
-            location: 'Imus, Cavite',
-            lat: 14.4297,
-            lng: 120.9367,
-            date: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString()
-        }
-    ];
-
-    photos = samplePhotos;
-    savePhotos();
-    photos.forEach(photo => addMarker(photo));
-    updateStats();
 }
 
 // ===== Animation Styles (added dynamically) =====
